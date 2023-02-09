@@ -17,11 +17,16 @@ AC_PROG_INSTALL
 
 dnl Checks for libraries.
 
+PKG_PROG_PKG_CONFIG
 AC_CHECK_LIB(png,png_read_image)
 AC_CHECK_LIB(SDL,SDL_Init)
 AC_CHECK_LIB(SDL,SDL_LockAudio)
 AC_CHECK_LIB(SDL_net,SDLNet_Init)
 AC_CHECK_LIB(SDL_mixer,Mix_OpenAudio)
+PKG_PROG_PKG_CONFIG(1.8.0)
+PKG_CHECK_MODULES(FT2,freetype2)
+AC_SUBST(FT2_CFLAGS)
+AC_SUBST(FT2_LIBS)
 
 ### TODO ### win32
 AC_ARG_ENABLE([win],
