@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([foobillardplus], [3.43beta])
+AC_INIT([foobillardplus],[3.43beta])
 AC_CONFIG_SRCDIR([src/billard3d.c])
 
 AC_CONFIG_HEADERS([src/config.h])
@@ -43,7 +43,15 @@ fi
 AC_CHECK_LIB(m,pow)
 
 dnl Checks for header files.
-AC_HEADER_STDC
+m4_warn([obsolete],
+[The preprocessor macro `STDC_HEADERS' is obsolete.
+  Except in unusual embedded environments, you can safely include all
+  ISO C90 headers unconditionally.])dnl
+# Autoupdate added the next two lines to ensure that your configure
+# script's behavior did not change.  They are probably safe to remove.
+AC_CHECK_INCLUDES_DEFAULT
+AC_PROG_EGREP
+
 AC_CHECK_HEADERS(limits.h unistd.h math.h stdlib.h stdio.h string.h endian.h GL/glu.h GL/gl.h getopt.h png.h ctype.h locale.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
@@ -381,7 +389,8 @@ AM_CONDITIONAL(FAST_MATH, test "x$FAST_MATH" = "xyes")
 
 AM_CONDITIONAL(USE_DEBIAN, test "x$USE_DEBIAN" = "xyes")
 
-AC_OUTPUT(Makefile foobillardplus.spec src/Makefile)
+AC_CONFIG_FILES([Makefile foobillardplus.spec src/Makefile])
+AC_OUTPUT
 
 AC_MSG_RESULT([
 General configuration ================================================
